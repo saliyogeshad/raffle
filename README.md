@@ -1,66 +1,45 @@
-## Foundry
+# Raffle Smart Contract Project
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+Welcome to the Raffle project! This repository contains a decentralized raffle system built with Solidity and Chainlink VRF, designed for transparency and fairness on the Ethereum blockchain.
 
-Foundry consists of:
+## Overview
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+The Raffle contract allows users to enter a lottery by paying an entrance fee. After a set interval, a random winner is selected using Chainlink's Verifiable Random Function (VRF), ensuring unbiased results.
 
-## Documentation
+## Features
 
-https://book.getfoundry.sh/
+- Decentralized lottery system
+- Secure randomness via Chainlink VRF
+- Configurable entrance fee and interval
+- Event logging for entries
+- Custom error handling for insufficient payments
+- Immutable contract parameters for security
 
-## Usage
+## How It Works
 
-### Build
+1. Users call `enterRaffle()` and pay the entrance fee.
+2. Entrants are stored in an array until the interval elapses.
+3. The contract owner or an external trigger calls `pickWinner()`.
+4. Chainlink VRF provides a random number to select the winner.
+5. The winner receives the accumulated ETH.
 
-```shell
-$ forge build
-```
+## Technologies Used
 
-### Test
+- Solidity ^0.8.18
+- Chainlink VRF v2 Plus
+- Foundry for development and testing
 
-```shell
-$ forge test
-```
+## Getting Started
 
-### Format
+1. Clone the repository.
+2. Install Foundry and dependencies.
+3. Deploy the contract to Sepolia or another testnet.
+4. Fund your contract with LINK and ETH for VRF requests.
 
-```shell
-$ forge fmt
-```
+## Security Considerations
 
-### Gas Snapshots
+Randomness is sourced externally to prevent manipulation. All critical functions are protected against reentrancy and invalid calls.
 
-```shell
-$ forge snapshot
-```
+## License
 
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+This project is licensed under MIT. See LICENSE for details.
