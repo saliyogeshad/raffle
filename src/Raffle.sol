@@ -43,7 +43,7 @@ contract Raffle is VRFConsumerBaseV2Plus {
      */
     error Raffle__SendMoreToEnterRaffle();
     error Raffle__TransferFailed();
-    error Raffle__RaffleIsNotOPEN();
+    error Raffle__RaffleNotOPEN();
     error Raffle__UpkeepNotNeeded(
         uint256 balance,
         uint256 playresLength,
@@ -74,7 +74,7 @@ contract Raffle is VRFConsumerBaseV2Plus {
             revert Raffle__SendMoreToEnterRaffle();
         }
         if (s_raffleState != RaffleState.OPEN) {
-            revert Raffle__RaffleIsNotOPEN();
+            revert Raffle__RaffleNotOPEN();
         }
         //effects
         s_players.push(payable(msg.sender));
